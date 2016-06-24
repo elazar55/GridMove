@@ -5,58 +5,58 @@
 [1]
   TriggerTop    = [Monitor1Top]
   TriggerBottom = [Monitor1Top]  + 50
-  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 1024 * 0
-  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 1024 * 414
-  GridLeft   = [Monitor1Left]    + [Monitor1Width]  / 1024 * 0
-  GridRight  = [Monitor1Left]    + [Monitor1Width]  / 1024 * 414
+  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 16 * 0
+  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 16 * 7
+  GridLeft   = [Monitor1Left]    + [Monitor1Width]  / 16 * 0
+  GridRight  = [Monitor1Left]    + [Monitor1Width]  / 16 * 7
   GridTop    = [Monitor1Top]
   GridBottom = [Monitor1Bottom]
 [2]
   TriggerTop    = [Monitor1Top]
   TriggerBottom = [Monitor1Top]  + 50
-  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 1024 * 414
-  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 1024 * 776
-  GridLeft   = [Monitor1Left]    + [Monitor1Width]  / 1024 * 414
-  GridRight  = [Monitor1Left]    + [Monitor1Width]  / 1024 * 776
+  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 16 * 7
+  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 16 * 12
+  GridLeft   = [Monitor1Left]    + [Monitor1Width]  / 16 * 7
+  GridRight  = [Monitor1Left]    + [Monitor1Width]  / 16 * 12
   GridTop    = [Monitor1Top]
   GridBottom = [Monitor1Bottom]
 [3]
   TriggerTop    = [Monitor1Top]
   TriggerBottom = [Monitor1Top]  + 50
-  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 1024 * 776
-  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 1024 * 1024
-  GridLeft   = [Monitor1Left]    + [Monitor1Width]  / 1024 * 776
-  GridRight  = [Monitor1Left]    + [Monitor1Width]  / 1024 * 1024
+  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 16 * 12
+  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 16 * 16
+  GridLeft   = [Monitor1Left]    + [Monitor1Width]  / 16 * 12
+  GridRight  = [Monitor1Left]    + [Monitor1Width]  / 16 * 16
   GridTop    = [Monitor1Top]
   GridBottom = [Monitor1Bottom]
 
 [4]
   TriggerTop    = [Monitor1Top]
   TriggerBottom = [Monitor1Top]  + [Monitor1Height] / 2
-  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 1024 * 0
-  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 1024 * 414
+  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 16 * 0
+  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 16 * 7
 [5]
   TriggerBottom = [Monitor1Bottom]
   TriggerTop    = [Monitor1Top]  + [Monitor1Height] / 2
-  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 1024 * 0
-  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 1024 * 414
+  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 16 * 0
+  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 16 * 7
 [6]
   TriggerTop    = [Monitor1Top]
   TriggerBottom = [Monitor1Top]  + [Monitor1Height] / 2
-  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 1024 * 414
-  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 1024 * 776
+  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 16 * 7
+  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 16 * 12
 [7]
   TriggerBottom = [Monitor1Bottom]
   TriggerTop    = [Monitor1Top]  + [Monitor1Height] / 2
-  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 1024 * 414
-  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 1024 * 776
+  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 16 * 7
+  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 16 * 12
 [8]
   TriggerTop    = [Monitor1Top]
   TriggerBottom = [Monitor1Top]  + [Monitor1Height] / 2
-  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 1024 * 776
-  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 1024 * 1024
+  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 16 * 12
+  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 16 * 16
 [9]
   TriggerBottom = [Monitor1Bottom]
   TriggerTop    = [Monitor1Top]  + [Monitor1Height] / 2
-  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 1024 * 776
-  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 1024 * 1024
+  TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 16 * 12
+  TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 16 * 16
