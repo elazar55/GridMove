@@ -289,10 +289,10 @@ MoveToGrid(GridToMove)
         GridWidth  := GridWidth  + 8
         GridHeight := GridHeight + 6
     } else {
-        GridLeft   := GridLeft   - 4
-        GridWidth  := GridWidth  + 8
+        GridLeft   := GridLeft   - 3
+        GridWidth  := GridWidth  + 6
         GridTop    := GridTop    - 0
-        GridHeight := GridHeight + 4
+        GridHeight := GridHeight + 3
     }
 
   WinRestore,A

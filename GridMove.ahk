@@ -744,8 +744,8 @@ GetGrid(number)
     } else {
         GridLeft   := GridLeft   - 3
         GridWidth  := GridWidth  + 6
-        GridTop    := GridTop    - 4
-        GridHeight := GridHeight + 7
+        GridTop    := GridTop    - 0
+        GridHeight := GridHeight + 3
     }
 }
 
