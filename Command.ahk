@@ -49,8 +49,6 @@ Drop_Command:
       {
       GoSub, Command_Hide
       msgbox,NOT DONE!!
-;      WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
-;      StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
       return
       }
     Else If (FirstNumber = "R")
@@ -165,43 +163,33 @@ OSDHide()
   }
 
 MoveToGrid(GridToMove)
-  {
-  global
-  triggerTop := %GridToMove%TriggerTop
-  triggerBottom := %GridToMove%TriggerBottom
-  triggerRight := %GridToMove%TriggerRight
-  triggerLeft := %GridToMove%TriggerLeft
-  GridBottom :=0
-  GridRight  :=0
-  GridTop    :=0
-  GridLeft   :=0
+{
+    global
+    triggerTop    := %GridToMove%TriggerTop
+    triggerLeft   := %GridToMove%TriggerLeft
+    triggerRight  := %GridToMove%TriggerRight
+    triggerBottom := %GridToMove%TriggerBottom
+    GridTop       := %GridToMove%GridTop
+    GridLeft      := %GridToMove%GridLeft
+    GridRight     := %GridToMove%GridRight
+    GridBottom    := %GridToMove%GridBottom
 
-  GridTop := %GridToMove%GridTop
-  GridBottom := %GridToMove%GridBottom
-  GridRight := %GridToMove%GridRight
-  GridLeft := %GridToMove%GridLeft
+    WinGetClass, WinClass, A
+    WinGet,      WindowId, id,     A
+    WinGet,      WinStyle, Style,  A
+    WinGetPos,   WinLeft,  WinTop, WinWidth, WinHeight, A
 
-
-  WinGetPos, WinLeft, WinTop, WinWidth, WinHeight,A
-  WinGetClass,WinClass,A
-  WinGet,WindowId,id,A
-  WinGet,WinStyle,Style,A
-
-  if SafeMode
+    if SafeMode
     if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
-      {
-      Return
-      }
-
-  if (WinClass = "DV2ControlHost" OR Winclass = "Progman"
-      OR Winclass = "Shell_TrayWnd")
-    Return
-
-  If Winclass in %Exceptions%
-    Return
-
-  If (GridTop = )
-    return
+    {
+        return
+    }
+    if (WinClass = "DV2ControlHost" OR Winclass = "Progman"OR Winclass = "Shell_TrayWnd")
+        return
+    If Winclass in %Exceptions%
+        return
+    If (GridTop = )
+        return
 
   If (GridLeft = "WindowWidth" AND GridRight = "WindowWidth")
   {
@@ -325,23 +313,10 @@ DefineHotkeys:
      Hotkey, %FastMoveModifiers%%A_Index%, WinHotkeys
      Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
   }
-  Hotkey, %FastMoveModifiers%0, WinHotKey10
-  Hotkey, %FastMoveModifiers%-, WinHotKey11
-  Hotkey, %FastMoveModifiers%=, WinHotKey12
 
   Hotkey, %FastMoveModifiers%Numpad0, WinHotkeys
   if FastMoveMeta <>
     Hotkey, %FastMoveModifiers%%FastMoveMeta%, WinHotkeysMeta
-  return
-
-WinHotkey10:
-  MoveToGrid("10")
-  return
-WinHotkey11:
-  MoveToGrid("11")
-  return
-WinHotkey12:
-  MoveToGrid("12")
   return
 
 WinHotkeys:
