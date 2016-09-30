@@ -166,40 +166,31 @@ MoveToGrid(GridToMove)
 {
     global
     triggerTop    := %GridToMove%TriggerTop
-    triggerBottom := %GridToMove%TriggerBottom
-    triggerRight  := %GridToMove%TriggerRight
     triggerLeft   := %GridToMove%TriggerLeft
-    GridBottom    := 0
-    GridRight     := 0
-    GridTop       := 0
-    GridLeft      := 0
+    triggerRight  := %GridToMove%TriggerRight
+    triggerBottom := %GridToMove%TriggerBottom
+    GridTop       := %GridToMove%GridTop
+    GridLeft      := %GridToMove%GridLeft
+    GridRight     := %GridToMove%GridRight
+    GridBottom    := %GridToMove%GridBottom
 
-    GridTop    := %GridToMove%GridTop
-    GridBottom := %GridToMove%GridBottom
-    GridRight  := %GridToMove%GridRight
-    GridLeft   := %GridToMove%GridLeft
+    WinGetClass, WinClass, A
+    WinGet,      WindowId, id,     A
+    WinGet,      WinStyle, Style,  A
+    WinGetPos,   WinLeft,  WinTop, WinWidth, WinHeight, A
 
-
-    WinGetPos, WinLeft, WinTop, WinWidth, WinHeight,A
-    WinGetClass,WinClass,A
-    WinGet,WindowId,id,A
-    WinGet,WinStyle,Style,A
-
-  if SafeMode
+    if SafeMode
     if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
-      {
-      Return
-      }
+    {
+        return
+    }
 
-  if (WinClass = "DV2ControlHost" OR Winclass = "Progman"
-      OR Winclass = "Shell_TrayWnd")
-    Return
-
-  If Winclass in %Exceptions%
-    Return
-
-  If (GridTop = )
-    return
+    if (WinClass = "DV2ControlHost" OR Winclass = "Progman"OR Winclass = "Shell_TrayWnd")
+        return
+    If Winclass in %Exceptions%
+        return
+    If (GridTop = )
+        return
 
   If (GridLeft = "WindowWidth" AND GridRight = "WindowWidth")
   {
