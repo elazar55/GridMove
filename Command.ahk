@@ -163,27 +163,27 @@ OSDHide()
   }
 
 MoveToGrid(GridToMove)
-  {
-  global
-  triggerTop := %GridToMove%TriggerTop
-  triggerBottom := %GridToMove%TriggerBottom
-  triggerRight := %GridToMove%TriggerRight
-  triggerLeft := %GridToMove%TriggerLeft
-  GridBottom :=0
-  GridRight  :=0
-  GridTop    :=0
-  GridLeft   :=0
+{
+    global
+    triggerTop    := %GridToMove%TriggerTop
+    triggerBottom := %GridToMove%TriggerBottom
+    triggerRight  := %GridToMove%TriggerRight
+    triggerLeft   := %GridToMove%TriggerLeft
+    GridBottom    := 0
+    GridRight     := 0
+    GridTop       := 0
+    GridLeft      := 0
 
-  GridTop := %GridToMove%GridTop
-  GridBottom := %GridToMove%GridBottom
-  GridRight := %GridToMove%GridRight
-  GridLeft := %GridToMove%GridLeft
+    GridTop    := %GridToMove%GridTop
+    GridBottom := %GridToMove%GridBottom
+    GridRight  := %GridToMove%GridRight
+    GridLeft   := %GridToMove%GridLeft
 
 
-  WinGetPos, WinLeft, WinTop, WinWidth, WinHeight,A
-  WinGetClass,WinClass,A
-  WinGet,WindowId,id,A
-  WinGet,WinStyle,Style,A
+    WinGetPos, WinLeft, WinTop, WinWidth, WinHeight,A
+    WinGetClass,WinClass,A
+    WinGet,WindowId,id,A
+    WinGet,WinStyle,Style,A
 
   if SafeMode
     if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
