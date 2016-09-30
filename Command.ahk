@@ -184,7 +184,6 @@ MoveToGrid(GridToMove)
     {
         return
     }
-
     if (WinClass = "DV2ControlHost" OR Winclass = "Progman"OR Winclass = "Shell_TrayWnd")
         return
     If Winclass in %Exceptions%
