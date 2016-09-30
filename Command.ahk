@@ -49,8 +49,6 @@ Drop_Command:
       {
       GoSub, Command_Hide
       msgbox,NOT DONE!!
-;      WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
-;      StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
       return
       }
     Else If (FirstNumber = "R")
@@ -325,23 +323,10 @@ DefineHotkeys:
      Hotkey, %FastMoveModifiers%%A_Index%, WinHotkeys
      Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
   }
-  Hotkey, %FastMoveModifiers%0, WinHotKey10
-  Hotkey, %FastMoveModifiers%-, WinHotKey11
-  Hotkey, %FastMoveModifiers%=, WinHotKey12
 
   Hotkey, %FastMoveModifiers%Numpad0, WinHotkeys
   if FastMoveMeta <>
     Hotkey, %FastMoveModifiers%%FastMoveMeta%, WinHotkeysMeta
-  return
-
-WinHotkey10:
-  MoveToGrid("10")
-  return
-WinHotkey11:
-  MoveToGrid("11")
-  return
-WinHotkey12:
-  MoveToGrid("12")
   return
 
 WinHotkeys:
