@@ -272,16 +272,19 @@ MoveToGrid(GridToMove)
   GridHeight := GridBottom - GridTop
 
     ; TODO: Window border padding in Grid*
-    if (A_OSVersion != "WIN_7") {
+    if (A_OSVersion != "WIN_7")
+    {
         GridLeft   := GridLeft   - 5
         GridWidth  := GridWidth  + 12
         GridTop    := GridTop    - 5
         GridHeight := GridHeight + 13
-    } else {
-        GridLeft   := GridLeft   - 0
-        GridWidth  := GridWidth  + 0
-        GridTop    := GridTop    - 0
-        GridHeight := GridHeight + 0
+    }
+    else
+    {
+        GridLeft   := GridLeft   - 5
+        GridWidth  := GridWidth  + 10
+        GridTop    := GridTop    - 9
+        GridHeight := GridHeight + 14
     }
 
   WinRestore,A
