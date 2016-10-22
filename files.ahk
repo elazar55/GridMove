@@ -353,55 +353,55 @@ return
 
 ;*********************************************************************Templates
 
-
 Template-3part:
-  Menu,Templates,DeleteAll
-  CreateTemplatesMenu()
+    Menu,Templates,DeleteAll
+    CreateTemplatesMenu()
 
-  SysGet, MonitorCount, MonitorCount
-  Count := 0
+    SysGet, MonitorCount, MonitorCount
+    Count := 0
 
-  loop, %MonitorCount%
-  {
-    SysGet, Monitor, MonitorWorkArea,%A_index%
-    MonitorWidth := MonitorRight - MonitorLeft
-    MonitorHeight := MonitorBottom - MonitorTop
+    loop, %MonitorCount%
+    {
+        SysGet, Monitor, MonitorWorkArea,%A_index%
+        MonitorWidth  := MonitorRight  - MonitorLeft
+        MonitorHeight := MonitorBottom - MonitorTop
 
-    Count+=1
-    %Count%TriggerTop    := MonitorTop
-    %Count%TriggerRight  := MonitorRight
-    %Count%TriggerBottom := MonitorBottom
-    %Count%TriggerLeft   := MonitorLeft + Round(MonitorWidth / 3)
-    %Count%GridTop       := %Count%TriggerTop
-    %Count%GridRight     := %Count%TriggerRight
-    %Count%GridBottom    := %Count%TriggerBottom
-    %Count%GridLeft      := %Count%TriggerLeft
+        Count += 1
+        %Count%TriggerTop    := MonitorTop
+        %Count%TriggerRight  := MonitorRight
+        %Count%TriggerBottom := MonitorBottom
+        %Count%TriggerLeft   := MonitorLeft + Round(MonitorWidth / 3)
+        %Count%GridTop       := %Count%TriggerTop
+        %Count%GridRight     := %Count%TriggerRight
+        %Count%GridBottom    := %Count%TriggerBottom
+        %Count%GridLeft      := %Count%TriggerLeft
 
-    Count+=1
-    %Count%TriggerTop    := MonitorTop
-    %Count%TriggerRight  := MonitorLeft + Round(MonitorWidth / 3)
-    %Count%TriggerBottom := MonitorTop + Round(MonitorHeight / 2)
-    %Count%TriggerLeft   := MonitorLeft
-    %Count%GridTop       := %Count%TriggerTop
-    %Count%GridRight     := %Count%TriggerRight
-    %Count%GridBottom    := %Count%TriggerBottom
-    %Count%GridLeft      := %Count%TriggerLeft
+        Count += 1
+        %Count%TriggerTop    := MonitorTop
+        %Count%TriggerRight  := MonitorLeft + Round(MonitorWidth / 3)
+        %Count%TriggerBottom := MonitorTop + Round(MonitorHeight / 2)
+        %Count%TriggerLeft   := MonitorLeft
+        %Count%GridTop       := %Count%TriggerTop
+        %Count%GridRight     := %Count%TriggerRight
+        %Count%GridBottom    := %Count%TriggerBottom
+        %Count%GridLeft      := %Count%TriggerLeft
 
-    Count+=1
-    temp := count - 1
-    %Count%TriggerTop    := %Temp%TriggerBottom +0.01
-    %Count%TriggerRight  := MonitorLeft + Round(MonitorWidth / 3)
-    %Count%TriggerBottom := MonitorBottom
-    %Count%TriggerLeft   := MonitorLeft
-    %Count%GridTop       := %Count%TriggerTop
-    %Count%GridRight     := %Count%TriggerRight
-    %Count%GridBottom    := %Count%TriggerBottom
-    %Count%GridLeft      := %Count%TriggerLeft
-  }
-  NGroups := MonitorCount * 3
-  Gui,Destroy
-  GoSub, CreateGroups
-  GridName = 3Part
-  GoSub, WriteIni
-return
+        Count += 1
+        temp := count - 1
+        %Count%TriggerTop    := %Temp%TriggerBottom +0.01
+        %Count%TriggerRight  := MonitorLeft + Round(MonitorWidth / 3)
+        %Count%TriggerBottom := MonitorBottom
+        %Count%TriggerLeft   := MonitorLeft
+        %Count%GridTop       := %Count%TriggerTop
+        %Count%GridRight     := %Count%TriggerRight
+        %Count%GridBottom    := %Count%TriggerBottom
+        %Count%GridLeft      := %Count%TriggerLeft
+    }
+
+    NGroups := MonitorCount * 3
+    Gui, Destroy
+    GoSub, CreateGroups
+    GridName = 3Part
+    GoSub, WriteIni
+    return
 

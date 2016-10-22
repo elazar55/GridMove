@@ -566,78 +566,77 @@ MousePosition:
   }
 return
 
-edgemove:
-  SetTimer, EdgeMove, Off
-  HotKey = LButton
-  sendinput, {LButton up}
-  MousePositionLock := true
-  SetBatchLines, -1
-  GoSub,DropZoneMode
-  MousePositionLock := false
-  EdgeFlag := True
-  Settimer, MousePosition,10
-return
-
-;**********************Snap Window to Grid
+    edgemove:
+    SetTimer, EdgeMove, Off
+    HotKey = LButton
+    sendinput, {LButton up}
+    MousePositionLock := true
+    SetBatchLines, -1
+    GoSub,DropZoneMode
+    MousePositionLock := false
+    EdgeFlag := True
+    Settimer, MousePosition,10
+    return
 
 SnapWindow:
-  sendinput, {LButton up}
-  CoordMode,Mouse,Screen
-  Moved := False
-  loop %NGroups%
-  {
-    triggerTop    := %A_Index%TriggerTop
-    triggerBottom := %A_Index%TriggerBottom
-    triggerRight  := %A_Index%TriggerRight
-    triggerLeft   := %A_Index%TriggerLeft
+    sendinput, {LButton up}
+    CoordMode,Mouse,Screen
+    Moved := False
 
-    GridBottom := 0
-    GridRight  := 0
-    GridTop    := 0
-    GridLeft   := 0
-
-    If (MouseY >= triggerTop AND MouseY <= triggerBottom
-        AND MouseX <= triggerRight AND MouseX >= triggerLeft)
+    loop %NGroups%
     {
-      GetGrid(A_Index)
+        triggerTop    := %A_Index%TriggerTop
+        triggerBottom := %A_Index%TriggerBottom
+        triggerRight  := %A_Index%TriggerRight
+        triggerLeft   := %A_Index%TriggerLeft
 
-      If GridTop = AlwaysOnTop
-      {
-        WinSet, AlwaysOnTop, Toggle,A
-        return
-      }
-      If GridTop = Maximize
-      {
-        winget,state,minmax,A
-        if state = 1
-          WinRestore,A
-        else
-          PostMessage, 0x112, 0xF030,,, A,
-        return
-      }
-      If GridTop = Run
-      {
-        Run,%GridLeft% ,%GridRight%
-        return
-      }
+        GridBottom := 0
+        GridRight  := 0
+        GridTop    := 0
+        GridLeft   := 0
 
-      WinRestore,A
-      Moved := True
+        If (MouseY >= triggerTop AND MouseY <= triggerBottom
+        AND MouseX <= triggerRight AND MouseX >= triggerLeft)
+        {
+            GetGrid(A_Index)
 
-      if ShouldUseSizeMoveMessage(WinClass)
-        SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
+            If GridTop = AlwaysOnTop
+            {
+                WinSet, AlwaysOnTop, Toggle,A
+                return
+            }
+            If GridTop = Maximize
+            {
+                winget,state,minmax,A
+                if state = 1
+                WinRestore,A
+                else
+                PostMessage, 0x112, 0xF030,,, A,
+                return
+            }
+            If GridTop = Run
+            {
+                Run,%GridLeft% ,%GridRight%
+                return
+            }
 
-      WinMove, ahk_id %windowid%, , %GridLeft%, %GridTop%,%GridWidth%,%GridHeight%,
+            WinRestore,A
+            Moved := True
 
-      if ShouldUseSizeMoveMessage(WinClass)
-        SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
-      break
+            if ShouldUseSizeMoveMessage(WinClass)
+            SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
+
+            WinMove, ahk_id %windowid%, , %GridLeft%, %GridTop%,%GridWidth%,%GridHeight%,
+
+            if ShouldUseSizeMoveMessage(WinClass)
+            SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
+            break
+        }
     }
-  }
-  If Moved
+    If Moved
     StoreWindowState(WindowID,WinLeft,WinTop,WinWidth,WinHeight)
-  gosub, hidegroups
-return
+    gosub, hidegroups
+    return
 
 GetGrid(number)
 {
