@@ -1,4 +1,0 @@
-File : Line
-
-Command.ahk : 286
-Grimove.ahk : 739
