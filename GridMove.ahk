@@ -4,15 +4,15 @@
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
 
     ; Options
-    ShowNumbersFlag              := True ; Displays numbers on the GUI
-    ShowGroupsFlag               := True ; Displays groups on the GUI
+    ShowNumbersFlag              := True ;Displays numbers on the GUI
+    ShowGroupsFlag               := True ;Displays groups on the GUI
     UseFastMove                  := True
-    LButtonDrag                  := True ; Allows dragging a window by its title
-    MButtonDrag                  := True ; Allows dragging a window using the 3rd mouse button
+    LButtonDrag                  := True
+    MButtonDrag                  := True
     UseCommand                   := True
     SafeMode                     := True
     FirstRun                     := True
-    EdgeDrag                     := True ; Enable the grid when dragging a window to the edge
+    EdgeDrag                     := True
     DisableTitleButtonsDetection := False
     StartWithWindows             := False
     SequentialMove               := False
@@ -43,7 +43,7 @@
     if DebugMode
       Traytip, GridMove, Reading INI, 10
 
-  GetScreenSize()       ;get the size of the monitors
+  GetScreenSize()
   GetMonitorSizes()
   RectangleSize := 1
   ComputeEdgeRectangles()
@@ -81,11 +81,6 @@
   WindowHeight=
   WindowXBuffer =
   WindowYBuffer =
-
-  ;if DebugMode
-  ;  Traytip,GridMove,Creating the grid,10
-
-  ;GoSub,createGroups NOT NEEDED, GRID IS CREATED IN "APPLY GRID"
 
   if DebugMode
     Traytip,GridMove,Registering Hotkeys...,10
@@ -125,15 +120,12 @@
 #InstallKeybdHook
 #noenv
 
-;  GoSub,TitleButtonInitialization
-
   if DebugMode
     Traytip,GridMove,Start process completed,10
 
 
   SetBatchLines, 20ms
 return
-
 
 MutexExists(name) {
     mutex := DllCall("CreateMutex", "UInt", 0, "UInt", 0, "str", name)
@@ -142,8 +134,6 @@ MutexExists(name) {
     return last_error == 183 ; ERROR_ALREADY_EXISTS
 }
 
-
-;*******************Init
 createTrayMenus()
 {
   global
@@ -153,10 +143,10 @@ createTrayMenus()
 
   ;;tray menu:
   Menu,Tray, Add, %tray_help%, AboutHelp
-  Menu,Tray, Default, %tray_help%
   Menu,Tray, Tip, GridMove V%ScriptVersion%
   Menu,Tray, Add, %tray_updates%, EnableAutoUpdate
   Menu,Tray, Add, %tray_ignore%, AddToIgnore
+  Menu,Tray, Default, %tray_help%
 
   if(Registered<>"quebec")
     Menu,Tray, Add, %tray_windows%, StartWithWindowsToggle
@@ -305,92 +295,92 @@ startWithWindowsQ()
   return false
 }
 
-;*******************Drop Zone Mode
-
 DropZoneMode:
-  DropZoneModeFlag := true
-  gosub,showgroups
-  Hotkey,RButton,on
-  Hotkey,Esc,on
-  Canceled := False
-  CoordMode,Mouse,Screen
-  hideGui2()
-  loop
-  {
-    If Canceled
-      {
-      Critical, on
-      Gui,2:Hide
-      Hotkey,RButton,off
-      Hotkey,Esc,off
-      DropZoneModeFlag := false
-      Critical, off
-      return
-      }
+    DropZoneModeFlag := true
+    gosub, showgroups
+    Hotkey, RButton, on
+    Hotkey, Esc, on
+    Canceled := False
+    CoordMode,Mouse,Screen
+    hideGui2()
 
-    GetKeyState,State,%hotkey%,P
-    If State = U
-        break
-
-    MouseGetPos, MouseX, MouseY, window,
-    flagLButton:=true
-    Critical, on
-    SetBatchLines, 10ms
-    loop,%NGroups%
+    loop
     {
-      TriggerTop    := %A_Index%TriggerTop
-      TriggerBottom := %A_Index%TriggerBottom
-      TriggerRight  := %A_Index%TriggerRight
-      TriggerLeft   := %A_Index%TriggerLeft
-
-      If (MouseY >= TriggerTop AND MouseY <= TriggerBottom
-          AND MouseX <= TriggerRight AND MouseX >= TriggerLeft)
-      {
-        GetGrid(A_Index)
-
-        If (GridTop = "AlwaysOnTop" OR GridTop = "Run")
+        If Canceled
         {
-          GridTop := TriggerTop
-          GridLeft := TriggerLeft
-          GridWidth := TriggerRight - TriggerLeft
-          GridHeight := TriggerBottom - TriggerTop
-        }
-        If (GridTop = "Maximize")
-        {
-          GridTop := GetMonitorTop(MouseX,MouseY)
-          GridLeft := GetMonitorLeft(MouseX,MouseY)
-          GridWidth := GetMonitorRight(MouseX,MouseY) - GetMonitorLeft(MouseX,MouseY)
-          GridHeight := GetMonitorBottom(MouseX,MouseY) - GetMonitorTop(MouseX,MouseY)
+            Critical, on
+            Gui,2:Hide
+            Hotkey,RButton,off
+            Hotkey,Esc,off
+            DropZoneModeFlag := false
+            Critical, off
+            return
         }
 
-        If not canceled
-        {
-          if(!AeroEnabled)
-            WinMove,ahk_id %gui2hwnd%, ,%GridLeft%,%GridTop%,%GridWidth%,%GridHeight%
-          else
-          {
-            left:=GridLeft + 3
-            top:=GridTop + 3
-            width:=GridWidth - 6
-            height:=GridHeight - 6
-            WinMove,ahk_id %gui2hwnd%, ,%Left%,%Top%,%Width%,%Height%
-          }
-        }
-        flagLButton:=false
+        GetKeyState,State,%hotkey%,P
+        If State = U
         break
-      }
+
+        MouseGetPos, MouseX, MouseY, window,
+        flagLButton:=true
+        Critical, on
+        SetBatchLines, 10ms
+
+        loop,%NGroups%
+        {
+            TriggerTop    := %A_Index%TriggerTop
+            TriggerBottom := %A_Index%TriggerBottom
+            TriggerRight  := %A_Index%TriggerRight
+            TriggerLeft   := %A_Index%TriggerLeft
+
+            If (MouseY >= TriggerTop   AND MouseY <= TriggerBottom
+            AND MouseX <= TriggerRight AND MouseX >= TriggerLeft)
+            {
+                GetGrid(A_Index)
+
+                If (GridTop = "AlwaysOnTop" OR GridTop = "Run")
+                {
+                    GridTop    := TriggerTop
+                    GridLeft   := TriggerLeft
+                    GridWidth  := TriggerRight  - TriggerLeft
+                    GridHeight := TriggerBottom - TriggerTop
+                }
+                If (GridTop = "Maximize")
+                {
+                    GridTop    := GetMonTop(MouseX,MouseY)
+                    GridLeft   := GetMonLeft(MouseX,MouseY)
+                    GridWidth  := GetMonRight(MouseX,MouseY) - GetMonLeft(MouseX,MouseY)
+                    GridHeight := GetMonBot(MouseX,MouseY)   - GetMonTop(MouseX,MouseY)
+                }
+
+                If not canceled
+                {
+                    if(!AeroEnabled)
+                        WinMove,ahk_id %gui2hwnd%, ,%GridLeft%,%GridTop%,%GridWidth%,%GridHeight%
+                    else
+                    {
+                        left:=GridLeft + 3
+                        top:=GridTop + 3
+                        width:=GridWidth - 6
+                        height:=GridHeight - 6
+                        WinMove,ahk_id %gui2hwnd%, ,%Left%,%Top%,%Width%,%Height%
+                    }
+                }
+                flagLButton:=false
+                break
+            }
+        }
+        Critical, off
+        if flagLButton
+        hideGui2()
     }
-    Critical, off
-    if flagLButton
-      hideGui2()
-  }
-  DropZoneModeFlag := false
-  Gui,2:Hide
-  Hotkey,RButton,off
-  Hotkey,Esc,off
-  GoSub,SnapWindow
-  Gosub,hidegroups
-return
+    DropZoneModeFlag := false
+    Gui, 2:Hide
+    Hotkey, RButton, off
+    Hotkey, Esc    , off
+    GoSub, SnapWindow
+    Gosub, hidegroups
+    return
 
 hideGui2()
 {
@@ -458,8 +448,6 @@ MButtonMove:
   Hotkey = MButton
   GoSub, DropZoneMode
   return
-
-;**********************edge/lbutton method
 
 MousePosition:
   Settimer, MousePosition,off
@@ -575,7 +563,6 @@ MousePosition:
     }
 
     sleep,100
-    ;eternal loop
   }
 return
 
@@ -640,7 +627,7 @@ SnapWindow:
       if ShouldUseSizeMoveMessage(WinClass)
         SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
 
-      WinMove, ahk_id %windowid%, ,GridLeft, %GridTop%,%GridWidth%,%GridHeight%,
+      WinMove, ahk_id %windowid%, , %GridLeft%, %GridTop%,%GridWidth%,%GridHeight%,
 
       if ShouldUseSizeMoveMessage(WinClass)
         SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
@@ -672,8 +659,8 @@ GetGrid(number)
     return
   If GridTop = WindowHeight
   {
-    MonitorBottom := GetMonitorBottom(MouseX, MouseY)
-    MonitorTop := GetMonitorTop(MouseX, MouseY)
+    MonitorBottom := GetMonBot(MouseX, MouseY)
+    MonitorTop := GetMonTop(MouseX, MouseY)
     GridTop := MouseY - 0.5 * WinHeight
     If (GridTop + WinHeight > MonitorBottom)
       GridTop := MonitorBottom - WinHeight
@@ -684,8 +671,8 @@ GetGrid(number)
 
   If GridLeft = WindowWidth
   {
-    MonitorRight := GetMonitorRight(MouseX, MouseY)
-    MonitorLeft := GetMonitorLeft(MouseX, MouseY)
+    MonitorRight := GetMonRight(MouseX, MouseY)
+    MonitorLeft := GetMonLeft(MouseX, MouseY)
     GridLeft := MouseX - 0.5 * WinWidth
     If (GridLeft + WinWidth > MonitorRight)
       GridLeft := MonitorRight - WinWidth
@@ -1213,7 +1200,7 @@ GetScreenSize()
   return
 }
 
-GetMonitorRight(MouseX, MouseY)
+GetMonRight(MouseX, MouseY)
 {
   SysGet,monitorcount,MonitorCount
   Loop,%monitorcount%
@@ -1226,7 +1213,7 @@ GetMonitorRight(MouseX, MouseY)
   return error
 }
 
-GetMonitorBottom(MouseX, MouseY)
+GetMonBot(MouseX, MouseY)
 {
   SysGet,monitorcount,MonitorCount
   Loop,%monitorcount%
@@ -1239,7 +1226,7 @@ GetMonitorBottom(MouseX, MouseY)
   return error
 }
 
-GetMonitorLeft(MouseX, MouseY)
+GetMonLeft(MouseX, MouseY)
 {
   SysGet,monitorcount,MonitorCount
   Loop,%monitorcount%
@@ -1252,7 +1239,7 @@ GetMonitorLeft(MouseX, MouseY)
   return error
 }
 
-GetMonitorTop(MouseX, MouseY)
+GetMonTop(MouseX, MouseY)
 {
   SysGet,monitorcount,MonitorCount
   Loop,%monitorcount%
