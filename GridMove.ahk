@@ -32,6 +32,16 @@
     Language                      = EN
     GridName                      = Grids/Custom.grid
 
+    offset_left   := -1
+    offset_width  :=  1
+    offset_top    := -1
+    offset_height :=  1
+
+    offset_left_10   := -5
+    offset_width_10  := 12
+    offset_top_10    := -5
+    offset_height_10 := 13
+
     ScriptVersion = 1.19.72
     MutexExists("GridMove_XB032")
 
@@ -725,17 +735,17 @@ GetGrid(number)
     ; TODO: Window border padding in Grid*
     if (A_OSVersion != "WIN_7")
     {
-        GridLeft   := GridLeft   - 5
-        GridWidth  := GridWidth  + 12
-        GridTop    := GridTop    - 5
-        GridHeight := GridHeight + 13
+        GridLeft   := GridLeft   + offset_left_10
+        GridWidth  := GridWidth  + offset_width_10
+        GridTop    := GridTop    + offset_top_10
+        GridHeight := GridHeight + offset_height_10
     }
     else
     {
-        GridLeft   := GridLeft   - 0
-        GridWidth  := GridWidth  + 0
-        GridTop    := GridTop    - 0
-        GridHeight := GridHeight + 0
+        GridLeft   := GridLeft   + offset_left
+        GridWidth  := GridWidth  + offset_width
+        GridTop    := GridTop    + offset_top
+        GridHeight := GridHeight + offset_height
     }
 
 }

@@ -129,38 +129,38 @@ Drop_Command:
   return
 
 OSDCreate()
-  {
-  global OSD
-  Gui,4: +ToolWindow +AlwaysOnTop -Disabled -SysMenu -Caption
-  Gui,4: Font,S13
-  Gui,4: Add, Button, vOSD x0 y0 w100 h30 ,
-  Gui,4: Color, EEAAEE
-  Gui,4: Show, x0 y0 w0 h0 noactivate, OSD
-  Gui,4: hide
-  WinSet, TransColor, EEAAEE,OSD
-  return
-  }
+{
+    global OSD
+    Gui, 4: +ToolWindow +AlwaysOnTop -Disabled -SysMenu -Caption
+    Gui, 4: Font,S13
+    Gui, 4: Add, Button, vOSD x0 y0 w100 h30 ,
+    Gui, 4: Color, EEAAEE
+    Gui, 4: Show, x0 y0 w0 h0 noactivate, OSD
+    Gui, 4: hide
+    WinSet, TransColor, EEAAEE,OSD
+    return
+}
 
 OSDWrite(Value)
-  {
-  Global OSD
-  Global Monitor1Width
-  Global Monitor1Height
-  Global Monitor1Top
-  Global Monitor1Left
-  XPos := Monitor1Left + Monitor1Width / 2 - 50
-  YPos := Monitor1Top + Monitor1Height / 2 - 15
-  GuiControl, 4:Text, OSD, %value%
-  Gui,4: +ToolWindow +AlwaysOnTop -Disabled -SysMenu -Caption
-  Gui,4:Show, x%Xpos% y%Ypos% w100 h30 noactivate
-  return
-  }
+{
+    Global OSD
+    Global Monitor1Width
+    Global Monitor1Height
+    Global Monitor1Top
+    Global Monitor1Left
+    XPos := Monitor1Left + Monitor1Width / 2 - 50
+    YPos := Monitor1Top + Monitor1Height / 2 - 15
+    GuiControl, 4:Text, OSD, %value%
+    Gui,4: +ToolWindow +AlwaysOnTop -Disabled -SysMenu -Caption
+    Gui,4:Show, x%Xpos% y%Ypos% w100 h30 noactivate
+    return
+}
 
 OSDHide()
-  {
-  Gui,4:hide,
-  return
-  }
+{
+    Gui, 4:hide,
+    return
+}
 
 MoveToGrid(GridToMove)
 {
@@ -274,17 +274,17 @@ MoveToGrid(GridToMove)
     ; TODO: Window border padding in Grid*
     if (A_OSVersion != "WIN_7")
     {
-        GridLeft   := GridLeft   - 5
-        GridWidth  := GridWidth  + 12
-        GridTop    := GridTop    - 5
-        GridHeight := GridHeight + 13
+        GridLeft   := GridLeft   + offset_left_10
+        GridWidth  := GridWidth  + offset_width_10
+        GridTop    := GridTop    + offset_top_10
+        GridHeight := GridHeight + offset_height_10
     }
     else
     {
-        GridLeft   := GridLeft   - 0
-        GridWidth  := GridWidth  + 0
-        GridTop    := GridTop    - 0
-        GridHeight := GridHeight + 0
+        GridLeft   := GridLeft   + offset_left
+        GridWidth  := GridWidth  + offset_width
+        GridTop    := GridTop    + offset_top
+        GridHeight := GridHeight + offset_height
     }
 
   WinRestore,A
@@ -312,21 +312,21 @@ Command_Hide:
   return
 
 DefineHotkeys:
-  loop,9
-  {
-     Hotkey, %FastMoveModifiers%%A_Index%, WinHotkeys
-     Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
-  }
+    loop,9
+    {
+        Hotkey, %FastMoveModifiers%%A_Index%, WinHotkeys
+        Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
+    }
 
-  Hotkey, %FastMoveModifiers%Numpad0, WinHotkeys
-  if FastMoveMeta <>
+    Hotkey, %FastMoveModifiers%Numpad0, WinHotkeys
+    if FastMoveMeta <>
     Hotkey, %FastMoveModifiers%%FastMoveMeta%, WinHotkeysMeta
-  return
+    return
 
 WinHotkeys:
-  StringRight,Number,A_ThisHotkey,1
-  MoveToGrid(Number)
-  return
+    StringRight,Number,A_ThisHotkey,1
+    MoveToGrid(Number)
+    return
 
 WinHotkeysMeta:
   GoSub, ShowGroups
@@ -395,7 +395,7 @@ WinHotkeysMeta:
   return
 
 MoveToPrevious:
-  direction = back
+    direction = back
 
 MoveToNext:
   if direction <> back
