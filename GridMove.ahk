@@ -32,10 +32,10 @@
     Language                      = EN
     GridName                      = Grids/Custom.grid
 
-    offset_left   := -1
-    offset_width  :=  1
-    offset_top    := -1
-    offset_height :=  1
+    offset_left   := -0
+    offset_width  :=  0
+    offset_top    := -0
+    offset_height :=  0
 
     offset_left_10   := -5
     offset_width_10  := 12

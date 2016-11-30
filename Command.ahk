@@ -194,48 +194,16 @@ MoveToGrid(GridToMove)
   If (GridLeft = "WindowWidth" AND GridRight = "WindowWidth")
   {
     WinGetClass,WinClass,A
-
-    if ShouldUseSizeMoveMessage(WinClass)
-      SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
-
     WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
-
-    if ShouldUseSizeMoveMessage(WinClass)
-      SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
     StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
     return
   }
   If (GridTop = "WindowHeight" AND GridBottom = "WindowHeight")
   {
     WinGetClass,WinClass,A
-
-    if ShouldUseSizeMoveMessage(WinClass)
-      SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
-
     WinMove, A, ,%GridLeft%,%WinTop%, % GridRight - GridLeft,%WinHeight%,
 
-    if ShouldUseSizeMoveMessage(WinClass)
-      SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
     StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
-    return
-  }
-  If (GridTop = "AlwaysOnTop")
-  {
-    WinSet, AlwaysOnTop, Toggle,A
-    return
-  }
-  If (GridTop =  "Maximize")
-  {
-    winget,state,minmax,A
-    if state = 1
-      WinRestore,A
-    else
-      PostMessage, 0x112, 0xF030,,, A,
-    return
-  }
-  If (GridTop = "Run")
-  {
-    Run,%GridLeft% ,%GridRight%
     return
   }
   if (GridTop = "Restore")
@@ -247,61 +215,60 @@ MoveToGrid(GridToMove)
       GridRight := WindowX + WindowWidth
       GridTop   := WindowY
       GridBottom:= WindowY + WindowHeight
-      WinRestore,A
+      WinRestore, A
 
       WinGetClass,WinClass,A
-
-      if ShouldUseSizeMoveMessage(WinClass)
-        SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
-
       WinMove, A, ,%GridLeft%,%GridTop%,% GridRight - GridLeft,% GridBottom - GridTop
-
-      if ShouldUseSizeMoveMessage(WinClass)
-        SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
-
       StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
       }
     return
   }
-  GridTop := round(GridTop)
-  GridLeft := round(GridLeft)
-  GridRight := round(GridRight)
-  GridBottom := round(GridBottom)
-
-  GridWidth  := GridRight - GridLeft
-  GridHeight := GridBottom - GridTop
-
-    ; TODO: Window border padding in Grid*
-    if (A_OSVersion != "WIN_7")
+    if (GridTop = "Maximize")
     {
-        GridLeft   := GridLeft   + offset_left_10
-        GridWidth  := GridWidth  + offset_width_10
-        GridTop    := GridTop    + offset_top_10
-        GridHeight := GridHeight + offset_height_10
+        WinRestore, A
+        WinMove, A, , %GridLeft%, 1, 1, 1
+        WinMaximize, A, , ,
+    }
+    else If (GridTop = "AlwaysOnTop")
+    {
+        WinSet, AlwaysOnTop, Toggle,A
+    }
+    else If (GridTop = "Run")
+    {
+        Run, %GridLeft% , %GridRight%
     }
     else
     {
-        GridLeft   := GridLeft   + offset_left
-        GridWidth  := GridWidth  + offset_width
-        GridTop    := GridTop    + offset_top
-        GridHeight := GridHeight + offset_height
+        GridLeft   := round(GridLeft)
+        GridTop    := round(GridTop)
+        GridRight  := round(GridRight)
+        GridBottom := round(GridBottom)
+        GridWidth  := GridRight  - GridLeft
+        GridHeight := GridBottom - GridTop
+
+        ; TODO: Window border padding in Grid*
+        if (A_OSVersion != "WIN_7")
+        {
+            GridLeft   := GridLeft   + offset_left_10
+            GridWidth  := GridWidth  + offset_width_10
+            GridTop    := GridTop    + offset_top_10
+            GridHeight := GridHeight + offset_height_10
+        }
+        else
+        {
+            GridLeft   := GridLeft   + offset_left
+            GridWidth  := GridWidth  + offset_width
+            GridTop    := GridTop    + offset_top
+            GridHeight := GridHeight + offset_height
+        }
+
+        WinRestore, A
+        WinGetClass,WinClass,A
+        WinMove, A, , %GridLeft%, %GridTop%, %GridWidth%, %GridHeight%
+
+        StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
     }
-
-  WinRestore,A
-
-  WinGetClass,WinClass,A
-
-  if ShouldUseSizeMoveMessage(WinClass)
-    SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
-
-  WinMove, A, ,%GridLeft%,%GridTop%,%GridWidth%,%GridHeight%
-
-  if ShouldUseSizeMoveMessage(WinClass)
-    SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
-
-  StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
-  return
-  }
+}
 
 Command_Hide:
   critical,on
