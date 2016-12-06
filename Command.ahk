@@ -206,6 +206,7 @@ MoveToGrid(GridToMove)
     StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
     return
   }
+
     GridLeft   := round(GridLeft)
     GridTop    := round(GridTop)
     GridRight  := round(GridRight)
