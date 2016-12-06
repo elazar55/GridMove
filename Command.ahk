@@ -226,7 +226,7 @@ MoveToGrid(GridToMove)
     if (GridTop = "Maximize")
     {
         WinRestore, A
-        WinMove, A, , %GridLeft%, 1, 1, 1
+        WinMove, A, , %GridLeft%, 1, 800, 600
         WinMaximize, A, , ,
     }
     else If (GridTop = "AlwaysOnTop")

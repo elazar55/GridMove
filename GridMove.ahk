@@ -37,10 +37,10 @@
     offset_top    := -0
     offset_height :=  0
 
-    offset_left_10   := -5
-    offset_width_10  := 12
-    offset_top_10    := -5
-    offset_height_10 := 13
+    offset_left_10   := -3
+    offset_top_10    := -3
+    offset_height_10 := 6
+    offset_width_10  := 6
 
     ScriptVersion = 1.19.72
     MutexExists("GridMove_XB032")
