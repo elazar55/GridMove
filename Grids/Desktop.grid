@@ -5,16 +5,16 @@
     TriggerTop    = 120
     TriggerBottom = 1170
     TriggerLeft   = -1920
-    TriggerRight  = -1918 / 3
+    TriggerRight  = -2100 / 3
 [2]
     TriggerTop    = 120
     TriggerBottom = 1165 / 2
-    TriggerLeft   = (-1920 / 3)
+    TriggerLeft   = (-2100 / 3)
     TriggerRight  = 0
 [3]
     TriggerTop    = 1170 / 2
     TriggerBottom = 1170
-    TriggerLeft   = (-1920 / 3)
+    TriggerLeft   = (-2100 / 3)
     TriggerRight  = 0
 [4]
     TriggerTop    = 0

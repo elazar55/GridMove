@@ -230,9 +230,23 @@ MoveToGrid(GridToMove)
         GridHeight := GridHeight + offset_height
     }
 
+    Style =
+    ExStyle =
+    WinGet, Style, Style, A
+    ; Borderless window
+    If (InStr(Style, 0x96) OR InStr(Style, 0x160F) OR InStr(Style, 0x16CB))
+    {
+        GridLeft   := GridLeft   + 2
+        GridWidth  := GridWidth  - 5
+        GridTop    := GridTop    + 0
+        GridHeight := GridHeight + 0
+    }
+    ; MsgBox, , , %Style%,
+
+    WinMove, A, , %GridLeft%, %GridTop%, %GridWidth%, %GridHeight%
+
     WinRestore, A
     WinGetClass,WinClass,A
-    WinMove, A, , %GridLeft%, %GridTop%, %GridWidth%, %GridHeight%
 
     StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
 }
