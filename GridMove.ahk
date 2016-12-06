@@ -610,36 +610,10 @@ SnapWindow:
         {
             GetGrid(A_Index)
 
-            If GridTop = AlwaysOnTop
-            {
-                WinSet, AlwaysOnTop, Toggle,A
-                return
-            }
-            If GridTop = Maximize
-            {
-                winget,state,minmax,A
-                if state = 1
-                WinRestore,A
-                else
-                PostMessage, 0x112, 0xF030,,, A,
-                return
-            }
-            If GridTop = Run
-            {
-                Run,%GridLeft% ,%GridRight%
-                return
-            }
-
             WinRestore,A
             Moved := True
 
-            if ShouldUseSizeMoveMessage(WinClass)
-            SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
-
             WinMove, ahk_id %windowid%, , %GridLeft%, %GridTop%,%GridWidth%,%GridHeight%,
-
-            if ShouldUseSizeMoveMessage(WinClass)
-            SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
             break
         }
     }
@@ -1416,12 +1390,6 @@ ComputeEdgeRectangles()
     EdgeRectangleXR%RectangleCount% := MonitorRight
     EdgeRectangleYB%RectangleCount% := MonitorBottom
   }
-}
-
-;Determine if the window class should be treated like Putty
-ShouldUseSizeMoveMessage(class)
-{
-	return class = "Putty" or class = "Pietty"
 }
 
 StartWithWindowsToggle:

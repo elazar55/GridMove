@@ -180,7 +180,7 @@ MoveToGrid(GridToMove)
     WinGetPos,   WinLeft,  WinTop, WinWidth, WinHeight, A
 
     if SafeMode
-    if not (WinStyle & 0x40000) ;0x40000 = WS_SIZEBOX = WS_THICKFRAME
+    if not (WinStyle & 0x40000)
     {
         return
     }
@@ -206,68 +206,34 @@ MoveToGrid(GridToMove)
     StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
     return
   }
-  if (GridTop = "Restore")
-  {
-    data := GetWindowState(WindowId)
-    If data
-      {
-      GridLeft  := WindowX
-      GridRight := WindowX + WindowWidth
-      GridTop   := WindowY
-      GridBottom:= WindowY + WindowHeight
-      WinRestore, A
+    GridLeft   := round(GridLeft)
+    GridTop    := round(GridTop)
+    GridRight  := round(GridRight)
+    GridBottom := round(GridBottom)
+    GridWidth  := GridRight  - GridLeft
+    GridHeight := GridBottom - GridTop
 
-      WinGetClass,WinClass,A
-      WinMove, A, ,%GridLeft%,%GridTop%,% GridRight - GridLeft,% GridBottom - GridTop
-      StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
-      }
-    return
-  }
-    if (GridTop = "Maximize")
+    ; TODO: Window border padding in Grid*
+    if (A_OSVersion != "WIN_7")
     {
-        WinRestore, A
-        WinMove, A, , %GridLeft%, 1, 800, 600
-        WinMaximize, A, , ,
-    }
-    else If (GridTop = "AlwaysOnTop")
-    {
-        WinSet, AlwaysOnTop, Toggle,A
-    }
-    else If (GridTop = "Run")
-    {
-        Run, %GridLeft% , %GridRight%
+        GridLeft   := GridLeft   + offset_left_10
+        GridWidth  := GridWidth  + offset_width_10
+        GridTop    := GridTop    + offset_top_10
+        GridHeight := GridHeight + offset_height_10
     }
     else
     {
-        GridLeft   := round(GridLeft)
-        GridTop    := round(GridTop)
-        GridRight  := round(GridRight)
-        GridBottom := round(GridBottom)
-        GridWidth  := GridRight  - GridLeft
-        GridHeight := GridBottom - GridTop
-
-        ; TODO: Window border padding in Grid*
-        if (A_OSVersion != "WIN_7")
-        {
-            GridLeft   := GridLeft   + offset_left_10
-            GridWidth  := GridWidth  + offset_width_10
-            GridTop    := GridTop    + offset_top_10
-            GridHeight := GridHeight + offset_height_10
-        }
-        else
-        {
-            GridLeft   := GridLeft   + offset_left
-            GridWidth  := GridWidth  + offset_width
-            GridTop    := GridTop    + offset_top
-            GridHeight := GridHeight + offset_height
-        }
-
-        WinRestore, A
-        WinGetClass,WinClass,A
-        WinMove, A, , %GridLeft%, %GridTop%, %GridWidth%, %GridHeight%
-
-        StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
+        GridLeft   := GridLeft   + offset_left
+        GridWidth  := GridWidth  + offset_width
+        GridTop    := GridTop    + offset_top
+        GridHeight := GridHeight + offset_height
     }
+
+    WinRestore, A
+    WinGetClass,WinClass,A
+    WinMove, A, , %GridLeft%, %GridTop%, %GridWidth%, %GridHeight%
+
+    StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
 }
 
 Command_Hide:
