@@ -20,9 +20,9 @@ Command:
         {
             winget,state,minmax,A
             if state = 1
-            WinRestore,A
+                WinRestore,A
             else
-            PostMessage, 0x112, 0xF030,,, A,
+                PostMessage, 0x112, 0xF030,,, A,
             }
         Else If (FirstNumber = "e")
         {
@@ -33,7 +33,7 @@ Command:
         Else If (FirstNumber = "A")
         {
             GoSub, Command_Hide
-            gosub,AboutHelp
+            gosub, AboutHelp
             return
         }
         Else If (FirstNumber = "R")
@@ -51,7 +51,6 @@ Command:
         GoSub, Command_Hide
         return
     }
-
     If (NGroups < FirstNumber * 10)
     {
         If (FirstNumber = "0")
@@ -65,6 +64,8 @@ Command:
         MoveToGrid(FirstNumber)
         return
     }
+    GoSub, Command_Hide
+    return
 
 OSDCreate()
 {
