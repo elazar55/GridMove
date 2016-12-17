@@ -233,8 +233,14 @@ MoveToNext:
     GridHeight := GridBottom - GridTop
     GridWidth := GridRight - GridLeft
 
-    if (WinTop = GridTop && WinLeft = GridLeft
-      && WinHeight = GridHeight && WinWidth = GridWidth)
+    ; TODO: Window border padding in Grid*
+    GridLeft   := GridLeft   + offset_left
+    GridWidth  := GridWidth  + offset_width
+    GridTop    := GridTop    + offset_top
+    GridHeight := GridHeight + offset_height
+
+    if (WinTop    = GridTop    && WinLeft  = GridLeft
+     && WinHeight = GridHeight && WinWidth = GridWidth)
     {
       current := a_index
       break
