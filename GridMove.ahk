@@ -58,7 +58,7 @@
   RectangleSize := 1
   ComputeEdgeRectangles()
   OSDcreate()
-  GoSub,setlanguage
+  GoSub, setlanguage
   GoSub, ReadIni
 
   AeroEnabled := loadAero()
@@ -107,13 +107,12 @@
 
   if SequentialMove
   {
-    Hotkey, %FastMoveModifiers%Right,MoveToNext
-    Hotkey, %FastMoveModifiers%Left,MoveToPrevious
+    Hotkey, %FastMoveModifiers%Right, MoveToNext
+    Hotkey, %FastMoveModifiers%Left , MoveToPrevious
   }
 
   MPFlag := True
   Settimer, MousePosition, 100
-  ;Settimer, ReloadOnResolutionChange, 1000
 
   HotKey,RButton,NextGrid
   HotKey,RButton,off
