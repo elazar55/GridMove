@@ -4,129 +4,67 @@
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
 
 Command:
+    GoSub, ShowGroups
+    OSDwrite("- -")
+    Input, FirstNumber, I L1 T60, {esc}, 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0 , m , r , n , M , v , a , e
 
-  GoSub, ShowGroups
-
-Drop_Command:
-  Settimer,Drop_Command,off
-  OSDwrite("- -")
-  Input,FirstNumber,I L1 T10,{esc},1,2,3,4,5,6,7,8,9,0,m,r,n,M,v,a,e
-  If ErrorLevel = Max
+    If (ErrorLevel = "Timeout" OR ErrorLevel = "EndKey")
     {
-    OSDwrite("| |")
-    sleep,200
-    GoSub,Command
-    }
-  If (ErrorLevel = "Timeout" OR ErrorLevel = "EndKey")
-    {
-    GoSub, Command_Hide
-    return
+        GoSub, Command_Hide
+        return
     }
 
-  If FirstNumber is not number
+    If FirstNumber is not number
     {
-    If (FirstNumber = "M")
-      {
-      winget,state,minmax,A
-      if state = 1
-        WinRestore,A
-      else
-        PostMessage, 0x112, 0xF030,,, A,
-      }
-    Else If (FirstNumber = "e")
-    {
-      GoSub, Command_Hide
-      exitapp
-      return
-    }
-    Else If (FirstNumber = "A")
-    {
-      GoSub, Command_Hide
-      gosub,AboutHelp
-      return
-    }
-    Else If (FirstNumber = "V")
-      {
-      GoSub, Command_Hide
-      msgbox,NOT DONE!!
-      return
-      }
-    Else If (FirstNumber = "R")
-      {
-      GoSub, Command_Hide
-      Reload
-      }
-    Else If FirstNumber = n
-      {
-      gosub, NextGrid
-      gosub, command
-      return
-      }
-    GoSub, Command_Hide
-    return
+        If (FirstNumber = "M")
+        {
+            winget,state,minmax,A
+            if state = 1
+            WinRestore,A
+            else
+            PostMessage, 0x112, 0xF030,,, A,
+            }
+        Else If (FirstNumber = "e")
+        {
+            GoSub, Command_Hide
+            exitapp
+            return
+        }
+        Else If (FirstNumber = "A")
+        {
+            GoSub, Command_Hide
+            gosub,AboutHelp
+            return
+        }
+        Else If (FirstNumber = "R")
+        {
+            GoSub, Command_Hide
+            Reload
+        }
+        Else If FirstNumber = n
+        {
+            gosub, NextGrid
+            gosub, command
+            return
+        }
+
+        GoSub, Command_Hide
+        return
     }
 
-  If (NGroups < FirstNumber * 10)
+    If (NGroups < FirstNumber * 10)
     {
-    If (FirstNumber = "0")
-      {
-      GoSub, Command_Hide
-      WinMinimize,A
-      return
-      }
-    GoSub, Command_Hide
-    MoveToGrid(FirstNumber)
-    return
-    }
+        If (FirstNumber = "0")
+        {
+            GoSub, Command_Hide
+            WinMinimize,A
+            return
+        }
 
-  Command2:
-  output := FirstNumber . " -"
-  OSDwrite(Output)
-  Input,SecondNumber,I L1 T2,{esc}{enter},1,2,3,4,5,6,7,8,9,0
-  If ErrorLevel = Max
-    {
-    OSDwrite("")
-    sleep,500
-    GoSub,Command2
+        GoSub, Command_Hide
+        MoveToGrid(FirstNumber)
+        return
     }
-
-  If(ErrorLevel = "Timeout")
-    {
-    If (FirstNumber = "0")
-      {
-      GoSub, Command_Hide
-      WinMinimize,A
-      return
-      }
-    GoSub, Command_Hide
-    MoveToGrid(FirstNumber)
-    return
-    }
-  If(ErrorLevel = "EndKey:enter")
-    {
-    If (FirstNumber = "0")
-      {
-      GoSub, Command_Hide
-      WinMinimize,A
-      return
-      }
-    GoSub, Command_Hide
-    MoveToGrid(FirstNumber)
-    return
-    }
-  If(ErrorLevel = "EndKey:esc")
-    {
-    GoSub, Command_Hide
-    return
-    }
-
-  If firstnumber = 0
-    GridNumber := SecondNumber
-  else
-    GridNumber := FirstNumber . SecondNumber
-  GoSub, Command_Hide
-  MoveToGrid(GridNumber)
-  return
 
 OSDCreate()
 {
@@ -230,10 +168,9 @@ MoveToGrid(GridToMove)
         GridHeight := GridHeight + offset_height
     }
 
-    Style =
-    ExStyle =
-    WinGet, Style, Style, A
     ; Borderless window
+    Style =
+    WinGet, Style, Style, A
     If (InStr(Style, 0x96) OR InStr(Style, 0x160F) OR InStr(Style, 0x16CB))
     {
         GridLeft   := GridLeft   + 2
@@ -244,10 +181,8 @@ MoveToGrid(GridToMove)
     ; MsgBox, , , %Style%,
 
     WinMove, A, , %GridLeft%, %GridTop%, %GridWidth%, %GridHeight%
-
     WinRestore, A
     WinGetClass,WinClass,A
-
     StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
 }
 
@@ -275,72 +210,6 @@ WinHotkeys:
     StringRight,Number,A_ThisHotkey,1
     MoveToGrid(Number)
     return
-
-WinHotkeysMeta:
-  GoSub, ShowGroups
-
-  Settimer,Drop_Command,off
-  OSDwrite("- -")
-  Input,FirstNumber,I L1 T10,{esc},1,2,3,4,5,6,7,8,9,0,m,r,n,M,v,a,e
-  If ErrorLevel = Max
-    {
-    OSDwrite("| |")
-    sleep,200
-    GoSub,WinHotkeysMeta
-    }
-  If (ErrorLevel = "Timeout" OR ErrorLevel = "EndKey")
-    {
-    GoSub, Command_Hide
-    return
-    }
-
-  If FirstNumber is not number
-    {
-    If (FirstNumber = "M")
-      {
-      winget,state,minmax,A
-      if state = 1
-        WinRestore,A
-      else
-        PostMessage, 0x112, 0xF030,,, A,
-      }
-    Else If (FirstNumber = "e")
-    {
-      GoSub, Command_Hide
-      exitapp
-      return
-    }
-    Else If (FirstNumber = "A")
-    {
-      GoSub, Command_Hide
-      gosub,AboutHelp
-      return
-    }
-    Else If (FirstNumber = "V")
-      {
-      GoSub, Command_Hide
-      msgbox,NOT DONE!!
-      return
-      }
-    Else If (FirstNumber = "R")
-      {
-      GoSub, Command_Hide
-      Reload
-      }
-    Else If FirstNumber = n
-      {
-      gosub, NextGrid
-      gosub, command
-      return
-      }
-    GoSub, Command_Hide
-    return
-    }
-
-  GoSub, Command_Hide
-  FirstNumber := FirstNumber + 10
-  MoveToGrid(FirstNumber)
-  return
 
 MoveToPrevious:
     direction = back

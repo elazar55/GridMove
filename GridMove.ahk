@@ -733,7 +733,6 @@ showgroups:
   Gui,+ToolWindow +AlwaysOnTop -Disabled -SysMenu -Caption
   WinSet, AlwaysOnTop, On,ahk_id %GuiId%
   Gui,Show, X%ScreenLeft% Y%ScreenTop% W%ScreenWidth% H%ScreenHeight% noactivate,GridMove Drop Zone
-  ;sleep,100
   GroupsShowing := True
   return
 
