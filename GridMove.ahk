@@ -10,7 +10,7 @@
     LButtonDrag                  := True
     MButtonDrag                  := True
     UseCommand                   := True
-    SafeMode                     := True
+    SafeMode                     := False
     FirstRun                     := True
     EdgeDrag                     := True
     DisableTitleButtonsDetection := False
@@ -37,10 +37,13 @@
     offset_top    := -0
     offset_height :=  0
 
-    offset_left_10   := -3
-    offset_top_10    := -3
-    offset_height_10 := 6
-    offset_width_10  := 6
+    if (A_OSVersion != "WIN_7")
+    {
+        offset_left   := -3
+        offset_width  :=  3
+        offset_top    := -6
+        offset_height :=  6
+    }
 
     ScriptVersion = 1.19.72
     MutexExists("GridMove_XB032")
@@ -107,8 +110,8 @@
 
   if SequentialMove
   {
-    Hotkey, %FastMoveModifiers%Right, MoveToNext
-    Hotkey, %FastMoveModifiers%Left , MoveToPrevious
+    Hotkey, %FastMoveModifiers%s, MoveToNext
+    Hotkey, %FastMoveModifiers%a , MoveToPrevious
   }
 
   MPFlag := True
@@ -279,6 +282,7 @@ createHotkeysMenu()
 {
   global
   Menu,hotkeys_menu, add, %tray_usecommand%, Hotkeys_UseCommand
+  Menu,hotkeys_menu, add, %tray_sequentialmove%, Hotkeys_sequentialmove
   Menu,hotkeys_menu, add, %tray_commandhotkey%, Hotkeys_CommandHotkey
   Menu,hotkeys_menu, add, %tray_fastmove%, Hotkeys_UseFastMove
   Menu,hotkeys_menu, add, %tray_fastmovemodifiers%, Hotkeys_FastMoveModifiers
@@ -290,6 +294,8 @@ createHotkeysMenu()
     Menu,hotkeys_menu,check, %tray_fastmove%
   else
     Menu,hotkeys_menu,Disable, %tray_fastmovemodifiers%
+  if SequentialMove
+    Menu, hotkeys_menu, check, %tray_sequentialmove%
 }
 
 startWithWindowsQ()
@@ -706,20 +712,10 @@ GetGrid(number)
   GridHeight := GridBottom - GridTop
 
     ; TODO: Window border padding in Grid*
-    if (A_OSVersion != "WIN_7")
-    {
-        GridLeft   := GridLeft   + offset_left_10
-        GridWidth  := GridWidth  + offset_width_10
-        GridTop    := GridTop    + offset_top_10
-        GridHeight := GridHeight + offset_height_10
-    }
-    else
-    {
-        GridLeft   := GridLeft   + offset_left
-        GridWidth  := GridWidth  + offset_width
-        GridTop    := GridTop    + offset_top
-        GridHeight := GridHeight + offset_height
-    }
+    GridLeft   := GridLeft   + offset_left
+    GridWidth  := GridWidth  + offset_width
+    GridTop    := GridTop    + offset_top
+    GridHeight := GridHeight + offset_height
 
 }
 
@@ -872,6 +868,15 @@ Hotkeys_UseCommand:
       UseCommand := False
   else
       UseCommand := True
+  GoSub,WriteIni
+  Reload
+return
+
+Hotkeys_sequentialmove:
+  If SequentialMove
+      SequentialMove := False
+  else
+      SequentialMove := True
   GoSub,WriteIni
   Reload
 return

@@ -36,7 +36,7 @@ setlanguage:
 
     error_grid_p1=Une erreur s'est produite lors de la lecture du fichier grid.`nLa configuration par défaut sera restaurée.
     error_grid_p2=Erreur de lecture pour un élément de la grille
-     error_inifile=Une erreur s'est produite lors de la lecture du fichier de configuration.`nLa configuration par défaut sera restaurée. 
+     error_inifile=Une erreur s'est produite lors de la lecture du fichier de configuration.`nLa configuration par défaut sera restaurée.
 
     info_removed=Fenêtre retirée des exceptions:
     info_added=Fenêtre ajoutée aux exceptions:
@@ -62,7 +62,7 @@ setlanguage:
     info_firstrun_title=Bienvenue dans GridMove.
     info_firstrun=À votre première ouverture, vous obtiendrez de l'aide sous forme d'info-bulles.`nPour les désactiver, il faut cliquer sur l'icône Gridmove dans la barre des tâches et décocher l'option.
 
-    about_main=GridMove vous aide à organiser les fenêtres de votre bureau en créant une grille qui pourra servir de guide pour aligner vos fenêtres.`nDes modèles prédéfinis sont inclus, mais il est possible de créer vos propres grilles ou en télécharger d'autres en ligne.`nPour plus d'information à ce sujet, vous pouvez vous joindre au forum de discussion sur le site DonationCoder.com dans la section aide. 
+    about_main=GridMove vous aide à organiser les fenêtres de votre bureau en créant une grille qui pourra servir de guide pour aligner vos fenêtres.`nDes modèles prédéfinis sont inclus, mais il est possible de créer vos propres grilles ou en télécharger d'autres en ligne.`nPour plus d'information à ce sujet, vous pouvez vous joindre au forum de discussion sur le site DonationCoder.com dans la section aide.
     about_suggest = Ce logiciel fût suggéré par Nudone (Utilisateur des forums de`nDonationCoder.com) dans la discussion suivante :
     about_visit = Retrouvez nous en ligne à l'adresse:
 
@@ -93,6 +93,8 @@ setlanguage:
     tray_gridorder=Set Grid Order...
 
     tray_usecommand=Use Command
+    tray_usecommand=Use Command
+    tray_sequentialmove = Use Sequential Move
     tray_commandhotkey=Select Command Hotkey...
     tray_fastmove=Use Fast Move
     tray_fastmovemodifiers=Select Fast Move Modifiers...
@@ -102,8 +104,8 @@ setlanguage:
     tray_color_black=Black
 
     error_ngroups=There was an error while opening the grid file.`nReverting to Default Config. Please select another grid from the templates menu.`nErrorCode:001
-    error_grid_p1=There was an error while reading the grid file.`nReverting to Default config. 
-    error_grid_p2=Read error on grid element 
+    error_grid_p1=There was an error while reading the grid file.`nReverting to Default config.
+    error_grid_p2=Read error on grid element
     error_inifile=There was an error while reading the ini file.`nReverting to the Default config
 
     info_removed=Removed window from exceptions:
@@ -125,12 +127,12 @@ setlanguage:
     helper_1=You can now select where to drop the window.
     helper_2=You may now drag the window`nto go into drop zone mode
     helper_3=If you keep the mouse here`ndrop zone mode will be activated
-    helper_4=You can now drag the window to the edge of the screen`nto activate drop zone mode. 
+    helper_4=You can now drag the window to the edge of the screen`nto activate drop zone mode.
 
     info_firstrun_title=Welcome to GridMove.
     info_firstrun=As this is GridMove's first run,you'll get some help in the form of tooltips.`nIf you don't like to see them, just close GridMove through its tray menu and run it again.
 
-    about_main = GridMove helps you organize your windows in your desktop, by creating a grid that when called up, you can snap windows into.`nIt is bundled with some predefined templates, but you can create your own grids, or download other people's grids.`nFor more information on how to use it, check the help tab or the DonationCoder.com Forum thread. 
+    about_main = GridMove helps you organize your windows in your desktop, by creating a grid that when called up, you can snap windows into.`nIt is bundled with some predefined templates, but you can create your own grids, or download other people's grids.`nFor more information on how to use it, check the help tab or the DonationCoder.com Forum thread.
     about_suggest = It was suggested by Nudone at DonationCoder.com forums,`nin the following thread:
     about_visit = Please visit us at:
 
