@@ -39,10 +39,10 @@
 
     if (A_OSVersion != "WIN_7")
     {
-        offset_left   := -9
+        offset_left   := -4
         offset_width  :=  9
-        offset_top    := -6
-        offset_height :=  9
+        offset_top    := -7
+        offset_height :=  11
     }
 
     ScriptVersion = 1.19.72
@@ -576,8 +576,6 @@ MousePosition:
       SetTimer, EdgeMove, Off
       EdgeFlag := True
     }
-
-    sleep,100
   }
 return
 
@@ -1441,7 +1439,6 @@ AddToIgnore:
     if(Ignore_added)
       break
     tooltip,%tooltip_ignore%
-    sleep,50
   }
   tooltip,
   hotkey,F11,off

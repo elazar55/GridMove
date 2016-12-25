@@ -239,10 +239,10 @@ MoveToNext:
     GridTop    := GridTop    + offset_top
     GridHeight := GridHeight + offset_height
 
-    if (WinTop    >= GridTop    - 200 && WinTop    <= GridTop    + 200
-     && WinLeft   >= GridLeft   - 200 && WinLeft   <= GridLeft   + 200
-     && WinHeight >= GridHeight - 200 && WinHeight <= GridHeight + 200
-     && WinWidth  >= GridWidth  - 200 && WinWidth  <= GridWidth  + 200)
+    if (WinTop    >= GridTop    - 300 && WinTop    <= GridTop    + 300
+     && WinLeft   >= GridLeft   - 300 && WinLeft   <= GridLeft   + 300
+     && WinHeight >= GridHeight - 300 && WinHeight <= GridHeight + 300
+     && WinWidth  >= GridWidth  - 300 && WinWidth  <= GridWidth  + 300)
     {
       current := a_index
       break
