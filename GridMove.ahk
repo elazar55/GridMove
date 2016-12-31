@@ -1,7 +1,5 @@
-;GridMove
-;By jgpaiva
-;date: May 2006
-;function: Adjusts windows to a predefined or user-defined desktop grid.
+    ; Preamble
+    #e:: Run Explorer++.exe
 
     ; Options
     ShowNumbersFlag              := True ;Displays numbers on the GUI
