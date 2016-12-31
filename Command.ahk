@@ -180,7 +180,7 @@ DefineHotkeys:
         Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
     }
 
-    Hotkey, %FastMoveModifiers%Numpad0, WinHotkeys
+    Hotkey, %FastMoveModifiers%0, WinHotkeys10
     Hotkey, #e, FileManager
     if FastMoveMeta <>
     Hotkey, %FastMoveModifiers%%FastMoveMeta%, WinHotkeysMeta
@@ -193,6 +193,10 @@ FileManager:
 WinHotkeys:
     StringRight,Number,A_ThisHotkey,1
     MoveToGrid(Number)
+    return
+WinHotkeys10:
+    StringRight,Number,A_ThisHotkey,1
+    MoveToGrid(10)
     return
 
 MoveToPrevious:
@@ -244,10 +248,10 @@ MoveToNext:
     GridTop    := GridTop    + offset_top
     GridHeight := GridHeight + offset_height
 
-    if (WinTop    >= GridTop    - 300 && WinTop    <= GridTop    + 300
-     && WinLeft   >= GridLeft   - 300 && WinLeft   <= GridLeft   + 300
-     && WinHeight >= GridHeight - 300 && WinHeight <= GridHeight + 300
-     && WinWidth  >= GridWidth  - 300 && WinWidth  <= GridWidth  + 300)
+    if (WinTop    >= GridTop    - 200 && WinTop    <= GridTop    + 200
+     && WinLeft   >= GridLeft   - 200 && WinLeft   <= GridLeft   + 200
+     && WinHeight >= GridHeight - 200 && WinHeight <= GridHeight + 200
+     && WinWidth  >= GridWidth  - 200 && WinWidth  <= GridWidth  + 200)
     {
       current := a_index
       break
