@@ -1,6 +1,3 @@
-    ; Preamble
-    #e:: Run Explorer++.exe
-
     ; Options
     ShowNumbersFlag              := True ;Displays numbers on the GUI
     ShowGroupsFlag               := True ;Displays groups on the GUI
