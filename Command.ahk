@@ -179,15 +179,9 @@ DefineHotkeys:
         Hotkey, %FastMoveModifiers%%A_Index%, WinHotkeys
         Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
     }
-
     Hotkey, %FastMoveModifiers%0, WinHotkeys10
-    Hotkey, #e, FileManager
     if FastMoveMeta <>
     Hotkey, %FastMoveModifiers%%FastMoveMeta%, WinHotkeysMeta
-    return
-
-FileManager:
-    Run Explorer++.exe
     return
 
 WinHotkeys:
