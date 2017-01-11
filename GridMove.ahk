@@ -23,9 +23,9 @@
     FastMoveMeta                  =
     ColorTheme                    = black
     Exceptions                    = QuarkXPress
-    GridOrder                     = Custom, 3 Part
+    GridOrder                     = Laptop, Desktop
     Language                      = EN
-    GridName                      = Grids/Custom.grid
+    GridName                      = Grids/Laptop.grid
 
     offset_left   := -0
     offset_width  :=  0
