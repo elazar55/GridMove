@@ -34,10 +34,10 @@
 
     if (A_OSVersion != "WIN_7")
     {
-        offset_left   := -4
-        offset_width  :=  9
+        offset_left   := -3
+        offset_width  :=  6
         offset_top    := -0
-        offset_height :=  5
+        offset_height :=  3
     }
 
     ScriptVersion = 1.19.72
