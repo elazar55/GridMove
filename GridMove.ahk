@@ -36,8 +36,8 @@
     {
         offset_left   := -4
         offset_width  :=  9
-        offset_top    := -7
-        offset_height :=  11
+        offset_top    := -0
+        offset_height :=  5
     }
 
     ScriptVersion = 1.19.72
@@ -137,7 +137,6 @@ return
 MutexExists(name) {
     mutex := DllCall("CreateMutex", "UInt", 0, "UInt", 0, "str", name)
     last_error := A_LastError
-;    DllCall("CloseHandle", "uint", mutex)
     return last_error == 183 ; ERROR_ALREADY_EXISTS
 }
 
