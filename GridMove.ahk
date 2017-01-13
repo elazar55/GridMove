@@ -98,7 +98,7 @@
     Hotkey, %CommandHotkey%, Command
 
   If MButtonDrag
-    Hotkey, MButton, MButtonMove
+    Hotkey, %FastMoveModifiers%MButton, MButtonMove
 
   If UseFastMove
     GoSub,DefineHotkeys
