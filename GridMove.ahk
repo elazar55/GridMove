@@ -283,7 +283,7 @@ createHotkeysMenu()
       If UseCommand
           Menu,hotkeys_menu,check, %tray_usecommand%
       else
-        Menu,hotkeys_menu,Disable, %tray_commandhotkey%,
+          Menu,hotkeys_menu,Disable, %tray_commandhotkey%,
       If UseFastMove
         Menu,hotkeys_menu,check, %tray_fastmove%
       else
