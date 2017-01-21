@@ -2,6 +2,11 @@
 ;By jgpaiva
 ;date: May 2006
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
+  ::btw::by the way
+  ::gl::good luck
+  ::ty::thank you
+  ::hf::have fun
+  ::dw::don't worry
 
 Command:
     GoSub, ShowGroups
