@@ -146,11 +146,11 @@ MoveToGrid(GridToMove)
   }
   If (GridTop = "WindowHeight" AND GridBottom = "WindowHeight")
   {
-    WinGetClass,WinClass,A
-    WinMove, A, ,%GridLeft%,%WinTop%, % GridRight - GridLeft,%WinHeight%,
+        WinGetClass,WinClass,A
+        WinMove, A, ,%GridLeft%,%WinTop%, % GridRight - GridLeft,%WinHeight%,
 
-    StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
-    return
+        StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
+        return
   }
 
     GridLeft   := round(GridLeft)
