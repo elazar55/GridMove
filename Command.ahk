@@ -28,7 +28,7 @@ Command:
         {
             winget,state,minmax,A
             if state = 1
-                WinRestore,A
+                WinRestore, A
             else
                 PostMessage, 0x112, 0xF030,,, A,
             }
