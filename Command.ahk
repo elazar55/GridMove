@@ -139,10 +139,10 @@ MoveToGrid(GridToMove)
 
   If (GridLeft = "WindowWidth" AND GridRight = "WindowWidth")
   {
-    WinGetClass,WinClass,A
-    WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
-    StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
-    return
+        WinGetClass,WinClass,A
+        WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
+        StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
+        return
   }
   If (GridTop = "WindowHeight" AND GridBottom = "WindowHeight")
   {
