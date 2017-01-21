@@ -281,7 +281,7 @@ createHotkeysMenu()
       Menu, hotkeys_menu, add, %tray_fastmove%, Hotkeys_UseFastMove
       Menu, hotkeys_menu, add, %tray_fastmovemodifiers%, Hotkeys_FastMoveModifiers
       If UseCommand
-        Menu,hotkeys_menu,check, %tray_usecommand%
+          Menu,hotkeys_menu,check, %tray_usecommand%
       else
         Menu,hotkeys_menu,Disable, %tray_commandhotkey%,
       If UseFastMove
