@@ -274,23 +274,23 @@ setColorTheme:
 
 createHotkeysMenu()
 {
-  global
-  Menu,hotkeys_menu, add, %tray_usecommand%, Hotkeys_UseCommand
-  Menu,hotkeys_menu, add, %tray_sequentialmove%, Hotkeys_sequentialmove
-  Menu,hotkeys_menu, add, %tray_commandhotkey%, Hotkeys_CommandHotkey
-  Menu,hotkeys_menu, add, %tray_fastmove%, Hotkeys_UseFastMove
-  Menu,hotkeys_menu, add, %tray_fastmovemodifiers%, Hotkeys_FastMoveModifiers
-  If UseCommand
-    Menu,hotkeys_menu,check, %tray_usecommand%
-  else
-    Menu,hotkeys_menu,Disable, %tray_commandhotkey%,
-  If UseFastMove
-    Menu,hotkeys_menu,check, %tray_fastmove%
-  else
-    Menu,hotkeys_menu,Disable, %tray_fastmovemodifiers%
-  if SequentialMove
-    Menu, hotkeys_menu, check, %tray_sequentialmove%
-}
+      global
+      Menu, hotkeys_menu, add, %tray_usecommand%, Hotkeys_UseCommand
+      Menu, hotkeys_menu, add, %tray_sequentialmove%, Hotkeys_sequentialmove
+      Menu, hotkeys_menu, add, %tray_commandhotkey%, Hotkeys_CommandHotkey
+      Menu, hotkeys_menu, add, %tray_fastmove%, Hotkeys_UseFastMove
+      Menu, hotkeys_menu, add, %tray_fastmovemodifiers%, Hotkeys_FastMoveModifiers
+      If UseCommand
+        Menu,hotkeys_menu,check, %tray_usecommand%
+      else
+        Menu,hotkeys_menu,Disable, %tray_commandhotkey%,
+      If UseFastMove
+        Menu,hotkeys_menu,check, %tray_fastmove%
+      else
+        Menu,hotkeys_menu,Disable, %tray_fastmovemodifiers%
+      if SequentialMove
+        Menu, hotkeys_menu, check, %tray_sequentialmove%
+    }
 
 startWithWindowsQ()
 {
