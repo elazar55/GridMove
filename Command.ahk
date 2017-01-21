@@ -173,12 +173,12 @@ MoveToGrid(GridToMove)
 }
 
 Command_Hide:
-  critical,on
-  Gosub, Cancel
-  critical,off
-  GoSub, HideGroups
-  OSDHide()
-  return
+    critical,on
+    Gosub, Cancel
+    critical,off
+    GoSub, HideGroups
+    OSDHide()
+    return
 
 DefineHotkeys:
     loop,9
