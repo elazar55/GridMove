@@ -2,5 +2,4 @@
 
 echo Pulling changes:
 git pull
-echo.
 PAUSE

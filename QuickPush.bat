@@ -12,5 +12,4 @@ git commit -a -m "Quick Push %dateTime%
 echo.
 echo Pushing changes:
 git push
-echo.
 PAUSE
