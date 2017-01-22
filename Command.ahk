@@ -5,6 +5,7 @@
 
   ::btw::by the way
   ::idk::I don't know
+  ::nvm::nevermind
   ::gl::good luck
   ::ty::thank you
   ::hf::have fun
