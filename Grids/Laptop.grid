@@ -41,7 +41,7 @@
     TriggerRight  = [Monitor1Width ] / 512 * 207
 [7]
     TriggerTop    = [Monitor1Height] / 5 * 2
-    TriggerBottom = [Monitor1Bottom]
+    TriggerBottom = [Monitor1Bottom] + 1
     TriggerLeft   = [Monitor1Width ] / 512 * 207
     TriggerRight  = [Monitor1Width ] / 512 * (207 * 2)
 [8]
