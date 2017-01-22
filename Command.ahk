@@ -10,6 +10,9 @@
   ::hf::have fun
   ::dw::don't worry
   ::ik::I know
+  ::gg::good game
+  ::wp::well played
+  ::gj::good job
 
 Command:
     GoSub, ShowGroups
