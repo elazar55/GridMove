@@ -2,7 +2,7 @@
     NumberOfGroups = 4
 
 [1]
-    TriggerRight  = -[Monitor2Width] / 5 * 3
+    TriggerRight  = -[Monitor2Width] / 128 * 71
     TriggerTop    = [Monitor2Top   ]
     TriggerBottom = [Monitor2Bottom] / 2 + 2
     TriggerLeft   = [Monitor2Left ]
@@ -12,7 +12,7 @@
     TriggerBottom = [Monitor2Bottom]
     TriggerLeft   = [Monitor2Left ]
 [3]
-    TriggerRight  = -[Monitor2Width] / 5 * 3
+    TriggerRight  = -[Monitor2Width] / 128 * 71
     TriggerTop    = [Monitor2Bottom   ] / 2
     TriggerBottom = [Monitor2Bottom]
     TriggerLeft   = -[Monitor2Width ] / 5 * 4.2
@@ -20,4 +20,4 @@
     TriggerRight  = [Monitor2Right]
     TriggerTop    = [Monitor2Top]
     TriggerBottom = [Monitor2Bottom]
-    TriggerLeft   = -[Monitor2Width ] / 5 * 3 - 1
+    TriggerLeft   = -[Monitor2Width ] / 128 * 71 - 1
