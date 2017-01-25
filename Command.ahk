@@ -14,7 +14,13 @@
   ::gg::good game
   ::wp::well played
   ::gj::good job
-
+/*
+  :?*:a::oodle
+  :?*:e::oodle
+  :?*:i::oodle
+  :?*:o::oodle
+  :?*:u::oodle
+*/
 Command:
     GoSub, ShowGroups
     OSDwrite("- -")
