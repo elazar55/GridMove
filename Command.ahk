@@ -1,26 +1,3 @@
-;GridMove
-;By jgpaiva
-;date: May 2006
-;function: Adjusts windows to a predefined or user-defined desktop grid.
-
-/*
-  ::btw::by the way
-  ::idk::I don't know
-  ::nvm::nevermind
-  ::gl::good luck
-  ::ty::thank you
-  ::hf::have fun
-  ::dw::don't worry
-  ::ik::I know
-  ::gg::good game
-  ::wp::well played
-  ::gj::good job
-  :?*:a::oodle
-  :?*:e::oodle
-  :?*:i::oodle
-  :?*:o::oodle
-  :?*:u::oodle
-*/
 Command:
     GoSub, ShowGroups
     OSDwrite("- -")

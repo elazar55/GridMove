@@ -496,19 +496,17 @@ MousePosition:
     return
   }
 
-  if(WinWidth > 3 * TitleSize)
+  If (TitleSize < WinWidth - 100 AND LButtonDrag
+  AND OldmouseX > TitleLeft      AND OldMouseX < TitleSize
+  AND (MouseControl = ""          OR DisableTitleButtonsDetection))
   {
-    If (TitleSize < WinWidth - 100 AND LButtonDrag
-        AND OldmouseX > TitleLeft AND OldMouseX < TitleSize
-  AND (MouseControl = "" OR DisableTitleButtonsDetection))
-    {
-      Hotkey = LButton
-      sendinput {LButton up}
-      GoSub,DropZoneMode
-      Settimer, MousePosition,10
-      return
-    }
+    Hotkey = LButton
+    sendinput {LButton up}
+    GoSub,DropZoneMode
+    Settimer, MousePosition,10
+    return
   }
+
   else
   {
     If (LButtonDrag AND OldmouseX > TitleLeft

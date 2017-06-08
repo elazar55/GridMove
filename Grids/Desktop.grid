@@ -1,18 +1,48 @@
 [Groups]
-    NumberOfGroups = 3
+    NumberOfGroups = 9
 
 [1]
-    TriggerTop    =  [Monitor2Top   ]
-    TriggerBottom =  [Monitor2Bottom] / 2
-    TriggerLeft   =  [Monitor2Left  ]
-    TriggerRight  = -[Monitor2Width ] / 3 * 2
+    TriggerTop    =  0
+    TriggerBottom =  1050
+    TriggerLeft   = -1920
+    TriggerRight  = -1920 / 1.6
 [2]
-    TriggerTop    =  [Monitor2Bottom] / 2
-    TriggerBottom =  [Monitor2Bottom]
-    TriggerLeft   =  [Monitor2Left  ]
-    TriggerRight  = -[Monitor2Width ] / 3 * 2
+    TriggerTop    =  0
+    TriggerBottom =  1050
+    TriggerLeft   = -1920 / 1.6
+    TriggerRight  =  0
 [3]
-    TriggerTop    =  [Monitor2Top   ]
-    TriggerBottom =  [Monitor2Bottom]
-    TriggerLeft   = -[Monitor2Width ] / 3 * 2
-    TriggerRight  =  [Monitor2Right ]
+    TriggerTop    = 0
+    TriggerBottom = 1410 / 2
+    TriggerLeft   = 0
+    TriggerRight  = 2560 / 2
+[4]
+    TriggerTop    = 1410 / 2
+    TriggerBottom = 1410
+    TriggerLeft   = 0
+    TriggerRight  = 2560 / 2
+[5]
+    TriggerTop    = 0
+    TriggerBottom = 1410
+    TriggerLeft   = 2560 / 2
+    TriggerRight  = 2560
+[6]
+    TriggerTop    = 0
+    TriggerBottom = 1050
+    TriggerLeft   = 2560
+    TriggerRight  = 3520
+[7]
+    TriggerTop    = 0
+    TriggerBottom = 1050 / 2
+    TriggerLeft   = 3520
+    TriggerRight  = 2560 + 1920
+[8]
+    TriggerTop    = 1050 / 2
+    TriggerBottom = 1050
+    TriggerLeft   = 4150
+    TriggerRight  = 2560 + 1920
+[9]
+    TriggerTop    = 1050 / 2
+    TriggerBottom = 1050
+    TriggerLeft   = 3520
+    TriggerRight  = 4150
